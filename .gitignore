@@ -9,3 +9,4 @@ c206/c206-test
 c206/c206-test.output
 .vscode/
 .idea/
+*.output
