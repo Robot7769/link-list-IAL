@@ -217,7 +217,20 @@ void DLL_DeleteFirst( DLList *list ) {
  * @param list Ukazatel na inicializovanou strukturu dvousměrně vázaného seznamu
  */
 void DLL_DeleteLast( DLList *list ) {
-	solved = FALSE; /* V případě řešení, smažte tento řádek! */
+	if (list->lastElement == NULL) {
+		return;
+	}
+	DLLElementPtr tmp = list->lastElement;
+	list->lastElement = tmp->previousElement;
+	if (list->lastElement != NULL) {
+		list->lastElement->nextElement = NULL;
+	} else {
+		list->firstElement = NULL;
+	}
+	if (tmp == list->activeElement) {
+		list->activeElement = NULL;
+	}
+	free(tmp);
 }
 
 /**
