@@ -130,7 +130,18 @@ void DLL_InsertFirst( DLList *list, int data ) {
  * @param data Hodnota k vložení na konec seznamu
  */
 void DLL_InsertLast( DLList *list, int data ) {
-	solved = FALSE; /* V případě řešení, smažte tento řádek! */
+	DLLElementPtr tmp = malloc(sizeof(struct DLLElement));
+	if (tmp == NULL) {
+
+	}
+	tmp->data = data;
+	tmp->nextElement = NULL;
+	tmp->previousElement = list->lastElement;
+	if (list->lastElement != NULL) {
+		list->lastElement->nextElement = tmp;
+	} else {
+		list->firstElement = tmp;
+	}
 }
 
 /**
@@ -138,7 +149,7 @@ void DLL_InsertLast( DLList *list, int data ) {
  * Funkci implementujte jako jediný příkaz, aniž byste testovali,
  * zda je seznam list prázdný.
  *
- * @param list Ukazatel na inicializovanou strukturu dvousměrně vázaného seznamu
+ * @param list Ukazatel na in/icializovanou strukturu dvousměrně vázaného seznamu
  */
 void DLL_First( DLList *list ) {
 	list->activeElement = list->firstElement;
@@ -241,6 +252,7 @@ void DLL_DeleteLast( DLList *list ) {
  * @param list Ukazatel na inicializovanou strukturu dvousměrně vázaného seznamu
  */
 void DLL_DeleteAfter( DLList *list ) {
+	
 	solved = FALSE; /* V případě řešení, smažte tento řádek! */
 }
 
