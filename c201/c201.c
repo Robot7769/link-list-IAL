@@ -150,6 +150,9 @@ void List_DeleteFirst( List *list ) {
 	}
 	ListElementPtr tmp = list->firstElement;				// první element uložíme do dačasné proměnné
 	list->firstElement = tmp->nextElement;					// jako první element nastvíme druhý
+	if (list->activeElement == tmp) {						// pokud je aktivní element první, aktivita se ztrácí
+		list->activeElement = NULL;
+	}
 	free(tmp);												// uvolníme první element, pokud byl i aktivní, tak po zavolání funce free() je NULL 
 }
 
