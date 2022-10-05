@@ -113,9 +113,11 @@ void DLL_InsertFirst( DLList *list, int data ) {
 	tmp->data = data;
 	tmp->nextElement = list->firstElement;
 	tmp->previousElement = NULL;
-	list->firstElement->previousElement = tmp;
-	list->firstElement = tmp;
+	if (list->firstElement != NULL) {
+		list->firstElement->previousElement = tmp;
 	}
+	list->firstElement = tmp;
+}
 
 /**
  * Vloží nový prvek na konec seznamu list (symetrická operace k DLL_InsertFirst).
