@@ -73,8 +73,8 @@ void List_Error() {
  * @param list Ukazatel na strukturu jednosměrně vázaného seznamu
  */
 void List_Init( List *list ) {
-	list->firstElement = NULL;
-	list->activeElement = NULL;
+	list->firstElement = NULL;								// listový seznam je ukončem elementem, který ukazuje jako další element NULL (konec seznamu)
+	list->activeElement = NULL;								// žádný element není aktivní
 }
 
 /**
@@ -85,11 +85,12 @@ void List_Init( List *list ) {
  * @param list Ukazatel na inicializovanou strukturu jednosměrně vázaného seznamu
  **/
 void List_Dispose( List *list ) {
-	while (list->firstElement != NULL) {
-		ListElementPtr tmp = list->firstElement;
-		list->firstElement = list->firstElement->nextElement;
-		free(tmp);
+	while (list->firstElement != NULL) {					// dokud není první element prázdný
+		ListElementPtr tmp = list->firstElement;			// první element uložíme do dočasné proměnné
+		list->firstElement = list->firstElement->nextElement; 	// jako první element nastavíme další
+		free(tmp);											// uvloníme původní první element
 	}
+	list->activeElement = NULL;
 }
 
 /**
@@ -109,8 +110,6 @@ void List_InsertFirst( List *list, int data ) {
 	tmp->nextElement = list->firstElement;					// původní první element se uloží jako následující nového
 	tmp->data = data;										// vložení dat to elementu
 	list->firstElement = tmp;								// nastevení nového elementu v listu jako první  //? *tmp
-	
-	//solved = FALSE;
 }
 
 /**
@@ -132,10 +131,10 @@ void List_First( List *list ) {
  */
 void List_GetFirst( List *list, int *dataPtr ) {
 	if (list->firstElement == NULL)	{
-		List_Error();
+		List_Error();										// pokud je list prázdný voláme error funkci 
 		return;
 	}
-	*dataPtr = list->firstElement->data;
+	*dataPtr = list->firstElement->data;					// předáme poiter na data elementu
 }
 
 /**
@@ -191,9 +190,9 @@ void List_InsertAfter( List *list, int data ) {
 		List_Error();
 		return;
 	}
-	tmp->nextElement = list->activeElement->nextElement;
+	tmp->nextElement = list->activeElement->nextElement;	//? je toto v pohodě ?? 
 	tmp->data = data;
-	list->activeElement = tmp;
+	list->activeElement->nextElement = tmp;								// jako aktivní element se nastaví nový
 }
 
 /**
