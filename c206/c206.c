@@ -79,7 +79,9 @@ void DLL_Error() {
  * @param list Ukazatel na strukturu dvousměrně vázaného seznamu
  */
 void DLL_Init( DLList *list ) {
-	solved = FALSE; /* V případě řešení, smažte tento řádek! */
+	list->firstElement = NULL;
+	list->activeElement = NULL;
+	list->lastElement = NULL;
 }
 
 /**
@@ -90,6 +92,7 @@ void DLL_Init( DLList *list ) {
  * @param list Ukazatel na inicializovanou strukturu dvousměrně vázaného seznamu
  */
 void DLL_Dispose( DLList *list ) {
+	// TODO
 	solved = FALSE; /* V případě řešení, smažte tento řádek! */
 }
 
@@ -102,8 +105,17 @@ void DLL_Dispose( DLList *list ) {
  * @param data Hodnota k vložení na začátek seznamu
  */
 void DLL_InsertFirst( DLList *list, int data ) {
-	solved = FALSE; /* V případě řešení, smažte tento řádek! */
-}
+	DLLElementPtr tmp = malloc(sizeof(struct DLLElement));
+	if (tmp == NULL) {
+		DLL_Error();
+		return;
+	}
+	tmp->data = data;
+	tmp->nextElement = list->firstElement;
+	tmp->previousElement = NULL;
+	list->firstElement->previousElement = tmp;
+	list->firstElement = tmp;
+	}
 
 /**
  * Vloží nový prvek na konec seznamu list (symetrická operace k DLL_InsertFirst).
