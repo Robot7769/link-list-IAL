@@ -1,4 +1,4 @@
-PROJECT=c201
+PROJECT=c206
 TESTS=$(PROJECT)-test $(PROJECT)-advanced-test
 TEST_OUTPUTS=$(PROJECT)-test.output #$(PROJECT)-advanced-test.output
 PROG=$(PROJECT)-test
