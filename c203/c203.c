@@ -101,7 +101,7 @@ void Queue_Init( Queue *queue ) {
 	for (int i = 0; i < QUEUE_SIZE; i++) {					// nastavuje všechny hodnoty v poli na '*'
 		queue->array[i] = '*';
 	}
-	queue->firstIndex = 0;
+	queue->firstIndex = 0;									// nastevení na 0
 	queue->freeIndex = 0;
 }
 
@@ -152,10 +152,10 @@ int Queue_IsFull( const Queue *queue ) {
  */
 void Queue_Front( const Queue *queue, char *dataPtr ) {
 	if (Queue_IsEmpty(queue)) {
-		Queue_Error(QERR_FRONT);
+		Queue_Error(QERR_FRONT);							// fronta je prázdná, volá se Queue_Error
 		return;
 	}
-	*dataPtr = queue->array[queue->firstIndex];
+	*dataPtr = queue->array[queue->firstIndex];				// předání dat
 }
 
 /**
@@ -168,10 +168,10 @@ void Queue_Front( const Queue *queue, char *dataPtr ) {
  */
 void Queue_Remove( Queue *queue ) {
 	if (Queue_IsEmpty(queue)) {
-		Queue_Error(QERR_REMOVE);
+		Queue_Error(QERR_REMOVE);							// fronta je prázdná, volá se Queue_Error
 		return;
 	}
-	queue->firstIndex = nextIndex(queue->firstIndex);
+	queue->firstIndex = nextIndex(queue->firstIndex);		// posunutí indexu na další element
 }
 
 /**
@@ -186,11 +186,11 @@ void Queue_Remove( Queue *queue ) {
  */
 void Queue_Dequeue( Queue *queue, char *dataPtr ) {
 	if (Queue_IsEmpty(queue)) {
-		Queue_Error(QERR_DEQUEUE);
+		Queue_Error(QERR_DEQUEUE);							// fronta je prázdná, volá se Queue_Error
 		return;
 	}
-	*dataPtr = queue->array[queue->firstIndex];
-	queue->firstIndex = nextIndex(queue->firstIndex);
+	*dataPtr = queue->array[queue->firstIndex];				// předání dat
+	queue->firstIndex = nextIndex(queue->firstIndex);		// posunutí indexu na další element
 }
 
 /**
@@ -207,11 +207,11 @@ void Queue_Dequeue( Queue *queue, char *dataPtr ) {
  */
 void Queue_Enqueue( Queue *queue, char data ) {
 	if (Queue_IsFull(queue)) {
-		Queue_Error(QERR_ENQUEUE);
+		Queue_Error(QERR_ENQUEUE);							// fronta je plná, volá se Queue_Error
 		return;
 	}
-	queue->array[queue->freeIndex] = data;
-	queue->freeIndex = nextIndex(queue->freeIndex);
+	queue->array[queue->freeIndex] = data;					// předání dat
+	queue->freeIndex = nextIndex(queue->freeIndex);			// posunutí indexu na další element
 }
 
 /* Konec příkladu c203.c */
