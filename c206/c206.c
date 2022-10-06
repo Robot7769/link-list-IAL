@@ -132,7 +132,8 @@ void DLL_InsertFirst( DLList *list, int data ) {
 void DLL_InsertLast( DLList *list, int data ) {
 	DLLElementPtr tmp = malloc(sizeof(struct DLLElement));
 	if (tmp == NULL) {
-
+		DLL_Error();
+		return;
 	}
 	tmp->data = data;
 	tmp->nextElement = NULL;
@@ -252,8 +253,17 @@ void DLL_DeleteLast( DLList *list ) {
  * @param list Ukazatel na inicializovanou strukturu dvousměrně vázaného seznamu
  */
 void DLL_DeleteAfter( DLList *list ) {
-	
-	solved = FALSE; /* V případě řešení, smažte tento řádek! */
+	if (list->activeElement == NULL || list->activeElement == list->lastElement) {			// pokud list neaktivní aktivní nebo je poslední element v listu, nic se neděje 
+		return;
+	}
+	DLLElementPtr tmp = list->activeElement->nextElement;
+	list->activeElement->nextElement = tmp->nextElement;
+	if (tmp->nextElement != NULL) {
+		tmp->nextElement->previousElement = list->activeElement;
+	} else {
+		list->lastElement = list->activeElement;
+	}
+	free(tmp);
 }
 
 /**
