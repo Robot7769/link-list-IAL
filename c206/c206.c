@@ -92,8 +92,15 @@ void DLL_Init( DLList *list ) {
  * @param list Ukazatel na inicializovanou strukturu dvousměrně vázaného seznamu
  */
 void DLL_Dispose( DLList *list ) {
-	// TODO
-	solved = FALSE; /* V případě řešení, smažte tento řádek! */
+	DLLElementPtr tmp = list->lastElement;
+	while (tmp != NULL) {
+		list->lastElement = tmp->previousElement;
+		free(tmp);
+		tmp = list->lastElement;
+	}
+	list->firstElement = NULL;
+	list->activeElement = NULL;
+	list->lastElement = NULL;
 }
 
 /**
@@ -275,7 +282,17 @@ void DLL_DeleteAfter( DLList *list ) {
  * @param list Ukazatel na inicializovanou strukturu dvousměrně vázaného seznamu
  */
 void DLL_DeleteBefore( DLList *list ) {
-	solved = FALSE; /* V případě řešení, smažte tento řádek! */
+	if (list->activeElement == NULL || list->activeElement == list->firstElement) {			// pokud list neaktivní aktivní nebo je první element v listu, nic se neděje 
+		return;
+	}
+	DLLElementPtr tmp = list->activeElement->previousElement;
+	list->activeElement->previousElement = tmp->previousElement;
+	if (tmp->previousElement != NULL) {
+		tmp->previousElement->nextElement = list->activeElement;
+	} else {
+		list->firstElement = list->activeElement;
+	}
+	free(tmp);
 }
 
 /**
@@ -288,7 +305,23 @@ void DLL_DeleteBefore( DLList *list ) {
  * @param data Hodnota k vložení do seznamu za právě aktivní prvek
  */
 void DLL_InsertAfter( DLList *list, int data ) {
-	solved = FALSE; /* V případě řešení, smažte tento řádek! */
+	if (list->activeElement == NULL) {			// pokud list neaktivní, nic se neděje 
+		return;
+	}
+	DLLElementPtr tmp = malloc(sizeof(struct DLLElement));
+	if (tmp == NULL) {
+		DLL_Error();
+		return;
+	}
+	tmp->data = data;
+	tmp->nextElement = list->activeElement->nextElement;
+	tmp->previousElement = list->activeElement;
+	list->activeElement->nextElement = tmp;
+	if (tmp->nextElement != NULL) {
+		tmp->nextElement->previousElement = tmp;
+	} else {
+		list->lastElement = tmp;
+	}
 }
 
 /**
@@ -301,7 +334,23 @@ void DLL_InsertAfter( DLList *list, int data ) {
  * @param data Hodnota k vložení do seznamu před právě aktivní prvek
  */
 void DLL_InsertBefore( DLList *list, int data ) {
-	solved = FALSE; /* V případě řešení, smažte tento řádek! */
+	if (list->activeElement == NULL) {			// pokud list neaktivní, nic se neděje 
+		return;
+	}
+	DLLElementPtr tmp = malloc(sizeof(struct DLLElement));
+	if (tmp == NULL) {
+		DLL_Error();
+		return;
+	}
+	tmp->data = data;
+	tmp->nextElement = list->activeElement;
+	tmp->previousElement = list->activeElement->previousElement;
+	list->activeElement->previousElement = tmp;
+	if (tmp->previousElement != NULL) {
+		tmp->previousElement->nextElement = tmp;
+	} else {
+		list->firstElement = tmp;
+	}
 }
 
 /**

@@ -102,14 +102,14 @@ void List_Dispose( List *list ) {
  * @param data Hodnota k vložení na začátek seznamu
  */
 void List_InsertFirst( List *list, int data ) {
-	ListElementPtr tmp =  malloc(sizeof(struct ListElement)); 	// rezervování paměti pro vkládaný prvek
+	ListElementPtr tmp =  malloc(sizeof(struct ListElement)); 	// rezervování paměti pro vkládaný element
 	if (tmp == NULL) {										// alokace se nepovedla
 		List_Error();
 		return;
 	}
 	tmp->nextElement = list->firstElement;					// původní první element se uloží jako následující nového
 	tmp->data = data;										// vložení dat to elementu
-	list->firstElement = tmp;								// nastevení nového elementu v listu jako první  //? *tmp
+	list->firstElement = tmp;								// nastevení nového elementu v listu jako první  
 }
 
 /**
@@ -193,9 +193,9 @@ void List_InsertAfter( List *list, int data ) {
 		List_Error();
 		return;
 	}
-	tmp->nextElement = list->activeElement->nextElement;	//? je toto v pohodě ?? 
+	tmp->nextElement = list->activeElement->nextElement;	// jako další element nového se nastaví následující aktivního
 	tmp->data = data;
-	list->activeElement->nextElement = tmp;								// jako aktivní element se nastaví nový
+	list->activeElement->nextElement = tmp;					// jako aktivní element se nastaví nový
 }
 
 /**
