@@ -143,6 +143,7 @@ void DLL_InsertLast( DLList *list, int data ) {
 	} else {
 		list->firstElement = tmp;
 	}
+	list->lastElement = tmp;
 }
 
 /**
