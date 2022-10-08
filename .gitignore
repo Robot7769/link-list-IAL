@@ -1,12 +1,12 @@
+*.output
 c201/c201
 c201/c201-test
-c201/c201-test.output
+!c201/c201-test.output
 c203/c203
 c203/c203-test
-c203/c203-test.output
+!c203/c203-test.output
 c206/c206
 c206/c206-test
-c206/c206-test.output
+!c206/c206-test.output
 .vscode/
 .idea/
-*.output
