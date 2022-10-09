@@ -189,8 +189,8 @@ void Queue_Dequeue( Queue *queue, char *dataPtr ) {
 		Queue_Error(QERR_DEQUEUE);							// fronta je prázdná, volá se Queue_Error
 		return;
 	}
-	*dataPtr = queue->array[queue->firstIndex];				// předání dat
-	queue->firstIndex = nextIndex(queue->firstIndex);		// posunutí indexu na další element
+	Queue_Front(queue,*dataPtr);							// předání dat
+	Queue_Remove(queue);									// posunutí indexu na další element
 }
 
 /**
