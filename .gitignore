@@ -10,3 +10,5 @@ c206/c206-test
 !c206/c206-test.output
 .vscode/
 .idea/
+!c206/c206-advanced-test.output
+c206/c206-advanced-test

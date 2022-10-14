@@ -1,6 +1,6 @@
 PROJECT=c206
 TESTS=$(PROJECT)-test $(PROJECT)-advanced-test
-TEST_OUTPUTS=$(PROJECT)-test.output #$(PROJECT)-advanced-test.output
+TEST_OUTPUTS=$(PROJECT)-test.output $(PROJECT)-advanced-test.output
 PROG=$(PROJECT)-test
 CC=gcc
 CFLAGS=-std=c99  -g -Wall -Wextra -pedantic -lm -fcommon
@@ -21,11 +21,11 @@ $(PROJECT)-test: $(PROJECT).c $(PROJECT)-test.c $(PROJECT)-test-utils.c
 $(PROJECT)-test.output: $(PROJECT)-test
 	./$(PROJECT)-test > $(PROJECT)-test.output
 
-#$(PROJECT)-advanced-test: $(PROJECT).c $(PROJECT)-advanced-test.c $(PROJECT)-test-utils.c
-#	$(CC) $(CFLAGS) -o $@ $(PROJECT).c $(PROJECT)-advanced-test.c $(PROJECT)-test-utils.c
+$(PROJECT)-advanced-test: $(PROJECT).c $(PROJECT)-advanced-test.c $(PROJECT)-test-utils.c
+	$(CC) $(CFLAGS) -o $@ $(PROJECT).c $(PROJECT)-advanced-test.c $(PROJECT)-test-utils.c
 
-#$(PROJECT)-advanced-test.output: $(PROJECT)-advanced-test
-#	./$(PROJECT)-advanced-test > $(PROJECT)-advanced-test.output
+$(PROJECT)-advanced-test.output: $(PROJECT)-advanced-test
+	./$(PROJECT)-advanced-test > $(PROJECT)-advanced-test.output
 
 tests: $(TEST_OUTPUTS)
 
