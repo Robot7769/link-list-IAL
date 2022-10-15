@@ -600,7 +600,7 @@ int main(/*int argc, char *argv[]*/)	{
 
   /* We try to delete firstElement and lastElement element by DLL_DeleteBefore and DLL_DeleteAfter. */	
     printf("\n[TEST36]\n");
-    printf("Function DLL_DeleteBefore deletes firstElement element.\n");
+    printf("Function DLL_DeleteBefore deletes first element.\n");
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     test_DLL_InsertFirst();
     test_DLL_First();
@@ -609,7 +609,7 @@ int main(/*int argc, char *argv[]*/)	{
     test_DLL_GetFirst();
 
     printf("\n[TEST37]\n");
-    printf("Function DLL_DeleteAfter deletes lastElement element.\n");
+    printf("Function DLL_DeleteAfter deletes last element.\n");
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     test_DLL_InsertLast();
     test_DLL_Last();

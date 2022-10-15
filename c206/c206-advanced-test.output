@@ -475,7 +475,7 @@ Return value of function DLL_IsActive is FALSE.
 Return value of function DLL_IsActive is FALSE.
 
 [TEST36]
-Function DLL_DeleteBefore deletes firstElement element.
+Function DLL_DeleteBefore deletes first element.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -----------------
  	24

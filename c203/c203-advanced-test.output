@@ -1,0 +1,238 @@
+**************************************************
+* C203: Queue implemented using an array         *
+* Advamced testing script (c203-advanced-test.c) *
+**************************************************
+* The explanation:                               *
+* ~~~~~~~~~~~~~~~~                               *
+* * - not used yet                               *
+* F - Front                                      *
+* B - Back                                       *
+* E - Empty (F == B)                             *
+**************************************************
+
+[TEST01] queue initialization
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*********
+^        
+E        
+
+[TEST02] We try Queue_IsEmpty and Queue_IsFull over the empty queue.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Function Queue_IsEmpty returned 'TRUE'.
+Fucntion Queue_IsFull returned 'FALSE'.
+
+[TEST03] Queue_Front, Queue_Dequeue, and Queue_Remove should cause handled errors.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Queue error: FRONT
+Queue error: DEQUEUE
+Queue error: REMOVE
+
+*********
+^        
+E        
+
+[TEST04] We check Queue_IsEmpty and Queue_IsFull.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Function Queue_IsEmpty returned 'TRUE'.
+Fucntion Queue_IsFull returned 'FALSE'.
+
+[TEST05] We put 'Ciao!' into the queue using Queue_Enqueue.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ciao!****
+^    ^   
+F    B   
+
+[TEST06] Functions Queue_IsEmpty as well as Queue_IsFull should return FALSE now.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Function Queue_IsEmpty returned 'FALSE'.
+Fucntion Queue_IsFull returned 'FALSE'.
+
+[TEST07] Function Queue_Front should always return the same value.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Function Queue_Front returned value 'C'.
+Function Queue_Front returned value 'C'.
+
+Ciao!****
+^    ^   
+F    B   
+
+[TEST08] Let's examine the difference between Queue_Remove and Queue_Dequeue.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Function Queue_Dequeue returned value 'i'.
+
+Ciao!****
+  ^  ^   
+  F  B   
+
+[TEST09] After three Queue_Dequeue the queue should be empty.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Function Queue_Dequeue returned value 'a'.
+Function Queue_Dequeue returned value 'o'.
+Function Queue_Dequeue returned value '!'.
+Function Queue_IsEmpty returned 'TRUE'.
+Fucntion Queue_IsFull returned 'FALSE'.
+
+Ciao!****
+     ^   
+     E   
+
+[TEST10] We put 1, 2, and 3 to the queue using QueueUp and check the result.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Function Queue_Front returned value '1'.
+Function Queue_IsEmpty returned 'FALSE'.
+Fucntion Queue_IsFull returned 'FALSE'.
+
+Ciao!123*
+     ^  ^
+     F  B
+
+[TEST11] After removing three elements using Queue_Dequeue, the queue should be empty.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Function Queue_Dequeue returned value '1'.
+Function Queue_Dequeue returned value '2'.
+Function Queue_Dequeue returned value '3'.
+Queue error: FRONT
+Function Queue_IsEmpty returned 'TRUE'.
+Fucntion Queue_IsFull returned 'FALSE'.
+
+Ciao!123*
+        ^
+        E
+
+[TEST12] Additional Queue_Enqueue should move to freeIndex possition 0.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Function Queue_Front returned value '4'.
+Function Queue_IsEmpty returned 'FALSE'.
+Fucntion Queue_IsFull returned 'FALSE'.
+
+Ciao!1234
+^       ^
+B       F
+
+[TEST13] After Queue_Dequeue, the indexes should be the same as after Queue_Init.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Function Queue_Dequeue returned value '4'.
+Queue error: FRONT
+Function Queue_IsEmpty returned 'TRUE'.
+Fucntion Queue_IsFull returned 'FALSE'.
+
+Ciao!1234
+^        
+E        
+
+[TEST14] We use Queue_Enqueue eight times to fill up the queue.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Function Queue_Front returned value 'A'.
+Function Queue_IsEmpty returned 'FALSE'.
+Fucntion Queue_IsFull returned 'TRUE'.
+
+ABCDEFGH4
+^       ^
+F       B
+
+[TEST15] Addition Queue_Enqueue should cause hadled error.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Queue error: ENQUEUE
+Function Queue_Front returned value 'A'.
+Function Queue_IsEmpty returned 'FALSE'.
+Fucntion Queue_IsFull returned 'TRUE'.
+
+ABCDEFGH4
+^       ^
+F       B
+
+[TEST16] Many couples of Queue_Enqueue and Queue_Remove operations.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+tuvwxyzrs
+       ^^
+       BF
+Function Queue_IsEmpty returned 'FALSE'.
+Fucntion Queue_IsFull returned 'TRUE'.
+
+[TEST17] We create the queue of the size 2.
+===========================================
+
+***
+^  
+E  
+
+[TEST18] Let's test all operations which should not change empty queue.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Function Queue_IsEmpty returned 'TRUE'.
+Fucntion Queue_IsFull returned 'FALSE'.
+Queue error: FRONT
+Queue error: DEQUEUE
+Queue error: REMOVE
+
+***
+^  
+E  
+
+[TEST19] Calling Queue_Enqueue three times should cause error.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Queue error: ENQUEUE
+Function Queue_IsEmpty returned 'FALSE'.
+Fucntion Queue_IsFull returned 'TRUE'.
+Function Queue_Front returned value '1'.
+Function Queue_Dequeue returned value '1'.
+
+12*
+ ^^
+ FB
+
+[TEST20] Calling Queue_Remove followed by Queue_Dequeue should cause error.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Queue error: DEQUEUE
+Function Queue_IsEmpty returned 'TRUE'.
+Fucntion Queue_IsFull returned 'FALSE'.
+Queue error: FRONT
+
+12*
+  ^
+  E
+
+[TEST21] We check the nextIndex function by two Queue_Enqueue and Queue_Dequeue.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Function Queue_Dequeue returned value '3'.
+Function Queue_Dequeue returned value '4'.
+Function Queue_IsEmpty returned 'TRUE'.
+Fucntion Queue_IsFull returned 'FALSE'.
+Queue error: FRONT
+
+423
+ ^ 
+ E 
+
+[TEST22] And finally, we create the queue of size 0.
+====================================================
+
+*
+^
+E
+Function Queue_IsEmpty returned 'TRUE'.
+Fucntion Queue_IsFull returned 'TRUE'.
+Queue error: FRONT
+Queue error: DEQUEUE
+Queue error: REMOVE
+
+*
+^
+E
+Queue error: ENQUEUE
+Function Queue_IsEmpty returned 'TRUE'.
+Fucntion Queue_IsFull returned 'TRUE'.
+Queue error: FRONT
+Queue error: DEQUEUE
+Queue error: REMOVE
+
+*
+^
+E
+Function Queue_IsEmpty returned 'TRUE'.
+Fucntion Queue_IsFull returned 'TRUE'.
+Queue error: FRONT
+
+******* The end of Advanced Tests (c203-advanced-test.c) *******
